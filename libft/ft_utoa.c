@@ -1,26 +1,42 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_strlen.c                                      .::    .:/ .      .::   */
+/*   ft_utoa.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: hmichel <hmichel@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/06 02:12:22 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/05/23 03:10:56 by hmichel     ###    #+. /#+    ###.fr     */
+/*   Created: 2019/04/16 13:51:40 by maegaspa     #+#   ##    ##    #+#       */
+/*   Updated: 2019/05/15 15:01:59 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_strlen(const char *str)
+static int		len(long long n)
 {
-	int	i;
+	int len;
 
-	if (str == NULL)
+	len = 1;
+	while (n /= 10)
+		len++;
+	return (len);
+}
+
+char			*ft_utoa(long long n)
+{
+	int		i;
+	char	*str;
+
+	if (n < 0)
+		n = 4294967296 - n;
+	i = len(n);
+	if (!(str = malloc((sizeof(char) * i))))
 		return (0);
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	while (i--)
+	{
+		str[i] = n % 10 + '0';
+		n = n / 10;
+	}
+	return (str);
 }

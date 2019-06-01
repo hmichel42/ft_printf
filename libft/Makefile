@@ -3,10 +3,10 @@
 #                                                               /              #
 #    Makefile                                         .::    .:/ .      .::    #
 #                                                  +:+:+   +:    +:  +:+:+     #
-#    By: maegaspa <marvin@le-101.fr>                +:+   +:    +:    +:+      #
+#    By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/10/04 18:45:14 by maegaspa     #+#   ##    ##    #+#        #
-#    Updated: 2018/10/18 17:12:59 by maegaspa    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/05/15 15:05:02 by maegaspa    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -77,6 +77,13 @@ ft_swap\
 ft_range\
 ft_recursive_factorial\
 ft_sqrt\
+ft_lltoa\
+ft_ulltoa\
+ft_utoa\
+ft_htoa\
+ft_hhtoa\
+ft_uhhtoa\
+ft_uhtoa\
 
 SOURCE = $(addsuffix .c, $(FILES))
 

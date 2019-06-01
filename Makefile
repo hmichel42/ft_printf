@@ -3,35 +3,48 @@
 #                                                               /              #
 #    Makefile                                         .::    .:/ .      .::    #
 #                                                  +:+:+   +:    +:  +:+:+     #
-#    By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+      #
+#    By: hmichel <hmichel@student.le-101.fr>        +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/02/06 16:29:54 by maegaspa     #+#   ##    ##    #+#        #
-#    Updated: 2019/02/06 20:28:17 by maegaspa    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/05/27 23:09:02 by hmichel     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
 .PHONY: all clean fclean re
 
-NAME = fillit
-OBJ = fillit
-MAKE = make
+NAME = libftprintf.a
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
-INCLUDE = ./includes
+INC = /includes/ft_printf.h
+INCLUDE = includes
 
-FILES = main\
-		
+FILES = nsm\
+		util\
+		wp_ftreat\
+		wp_streat\
+#		wp_dtreat\
+		wp_ftreat\
+		wp_otreat\
+		wp_oxtreat\
+		wp_streat\
+		wp_utreat
 
 SRC = $(addsuffix .c, $(FILES))
-OBJ= $(addsuffix .o, $(FILES))
+OBJ = $(addsuffix .o, $(FILES))
 
 all: $(NAME)
 
-$(NAME): $(SRC) $(INCLUDE)
+$(NAME): $(OBJ)
 	@echo "Compilation"
-	@$(MAKE) -C libft/
-	@$(CC) $(FLAGS) -o $(NAME) $(SRC) -I$(INCLUDE) -L libft/ -lft
+	@make -C libft/
+	@cp libft/libft.a ./$(NAME)
+	@ar rcs  $(NAME) $(OBJ)
+	@ranlib $(NAME)
+	
+object/%.o	:	%.c $(INCLUDE)
+	@mkdir -p obj
+	@$(CC) $(FLAGS) -I $(INCLUDE) -o $@ -c $<
 
 clean:
 	@echo "	 ██████╗██╗     ███████╗ █████╗ ███╗   ██╗██╗███╗   ██╗ ██████╗     ██████╗ ██████╗ ██╗███╗   ██╗████████╗███████╗"
@@ -40,15 +53,17 @@ clean:
 	@echo "	██║     ██║     ██╔══╝  ██╔══██║██║╚██╗██║██║██║╚██╗██║██║   ██║    ██╔═══╝ ██╔══██╗██║██║╚██╗██║   ██║   ██╔══╝  "
 	@echo "	╚██████╗███████╗███████╗██║  ██║██║ ╚████║██║██║ ╚████║╚██████╔╝    ██║     ██║  ██║██║██║ ╚████║   ██║   ██║     "
 	@echo "	 ╚═════╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚═╝  ╚═══╝ ╚═════╝     ╚═╝     ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝   ╚═╝   ╚═╝     "
-                                                                                
 	@rm -f $(OBJ)
-	@$(MAKE) -C libft/ clean
+	@make clean -C libft/
+
+onlylibft:
+	@make -C libft/
 
 fclean: clean
 	@echo "--------------------------------------------"
-	@echo "\n- Cleaning 'libft.a' and printf executable -"
+	@echo "\n- Cleaning 'libft.a' and libftprintf.a -"
 	@echo "\n--------------------------------------------"
 	@rm -f $(NAME)
-	@rm -f libft/libft.a
+	@make fclean -C libft/
 
 re: fclean all

@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   printf.h                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: hmichel <hmichel@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/17 13:23:57 by maegaspa     #+#   ##    ##    #+#       */
-/*   Updated: 2019/05/27 23:29:16 by hmichel     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/05/22 15:08:41 by maegaspa    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -70,69 +70,27 @@ typedef struct              s_count
     int                     j;
 }                           t_count;
 
-/*
-**	nsm.c
-*/
 int							parse(char *str, va_list ap);
 int                         ft_printf(const char *format, ...);
+//int                       parsing(char *str, va_list ap);
 int                         resolve_option(char *str, va_list ap, t_flag flag, int nb_char);
+unsigned int                x_treat(unsigned int out, t_flag flag, char *str);
+char                        s_treat(const char *out, t_flag flag, char *str);
+char                        *flag_boi(t_flag flag, char *str);
+int                         wp_streat(t_flag flag, char *pute);
+int                         wp_dtreat(t_flag flag, long long dig);
 void                        print_help(t_flag flag, int nb_char);
-void	                    ft_putncaract(char c, int size);
-void	                    ft_putnstr(char const *s, int size);
-
-/*
-**	util.c
-*/
-char						*ft_itoa_base(int value, int base);
-int							ft_atoi_2(char const *str);
-char						*ft_strcaps(char *str);
-int							ft_pow(int nb, int pow);
-int                         ft_putchar_add(char c);
-int							ft_putchar_add(char c);
-
-/*
-**	ft_choose_resolve.c
-*/
-int			ft_choose_resolve1(t_out out, va_list ap, t_flag flag, int nb_char);
-int			ft_choose_resolve2(t_out out, va_list ap, t_flag flag, char *nbr);
-
-/*
-**	wp_streat
-*/
-int							wp_streat(t_flag flag, char *string);
-
-/*
-**	wp_ftreat
-*/
-int							wp_ftreat(t_flag flag, double nb);
-long double					ft_pow10(long double f, int exp);
-
-
-/*
-**	wp_utreat
-*/
-int							wp_utreat(t_flag flag, long long dig);
-
-/*
-**	wp_otreat
-*/
-int							wp_otreat(t_flag flag, long long dig);
-
-/*
-**	wp_dtreat
-*/
-int         				is_minus(char *len);
-int							wp_dtreat(t_flag flag, long long dig);
-
-/*
-**	wp_oxtreat
-*/
-int							wp_oxtreat(t_flag flag, long long dig);
-
-/*
-**	jsp
-*/
+char                        *ft_itoa_base(int value, int base);
+int		                    ft_atoibis(char *s);
+char                        *ft_strcaps(char *str);
 int                         wp_ctreat(t_flag flag, int size, int c);
+int                         wp_oxtreat(t_flag flag, long long dig);
+//char                        *ft_wichf(char wichf, char *str, int i, t_flag flag);
+void	                    ft_putncaract(char c, int size);
+int		                    ft_atoi_2(char const *str);
+void	                    ft_putnstr(char const *s, int size);
+int			                wp_otreat(t_flag flag, long long dig);
+int                         wp_utreat(t_flag flag, long long dig);
 int                         choose_dig(t_flag flag, int nb_char, va_list ap, t_out out);
 int		                    choose_xo(t_flag flag, va_list ap, int nb_char, t_out out);
 char	                    *nbr_dig(long long dig, t_flag flag, char *str);
@@ -145,6 +103,7 @@ char	                    *octa_zero(char *seg);
 int		                    ret_int(unsigned long long n, int base);
 char	                    *cut_str_long(char *seg, t_flag flags);
 char	                    *dectoocta(unsigned long n, t_flag flags);
-// penser a passer en static les fonctions qui sont utilisees dans un unique fichier
-
+//int			                wp_ddtreat(t_flag flag, t_out out);
+//int                         ft_printf(const char *format,
+//        ...) __attribute__((format(printf,1,2)));
 #endif
